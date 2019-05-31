@@ -24,7 +24,7 @@ class City:
     self.lon = lon
 
   def __repr__(self):
-    return f'{self.name}: {self.lat}, {self.lon}'
+    return f'{self.name}, {self.lat}, {self.lon}'
 
 cities = []
 
@@ -35,12 +35,12 @@ cities = []
 def cityreader(cities=[]):
      with open('cities.csv') as csv_file:
         reader = csv.reader(csv_file)
-        line = 0
+        line = 0 
         for row in reader:
-            if line == 0:
+            if line == 0: #first line is a header so should not be loaded
                 line += 1
             else:
-                cities.append(City(row[0], float(row[3]), float(row[4])))
+                cities.append(City(row[0], float(row[3]), float(row[4]))) #FAILS without float
 
         return cities
 
